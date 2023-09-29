@@ -1,0 +1,31 @@
+<h1>Topics!</h1>
+
+<h2>Current topics</h2>
+
+<% if (it.topics && it.topics.length > 0) { %>
+    <ul>
+        <% it.topics.forEach(topic => { %>
+            <li>
+                <div style="display: flex; align-items: center; margin-right: 10px;">
+                    <a href="/topics/<%= topic.id %>"><%= topic.name %></a>
+                    <form method="POST" action="/topics/<%=topic.id%>/delete">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </li>
+        <% }); %>
+    </ul>
+<% } else { %>
+
+<p>None available.</p>
+
+<% } %>
+
+<h2>Add a topic!</h2>
+
+<form method="POST" action="/topics">
+    Name:<br/>
+    <%~ includeFile('./partials/error.eta', { errors: it.validationErrors, attribute: 'name'}) %>
+    <input type="text" name="name" value="<%= it.name ? it.name : "" %>" /><br/>
+    <button type="submit">Submit topic!</button>
+</form>

@@ -1,0 +1,21 @@
+<h1>Question!</h1>
+
+<p><%= it.question.question_text %></p>
+
+<% it.options.forEach(option => { %>
+    <div style="display: flex; align-items: center; margin-right: 10px;">
+        <li><%=option.option_text%>: <%=option.is_correct%></li>
+    </div>
+<% }); %>
+
+<h2>Adding a question option</h2>
+
+<form method="POST" action="/topics/<%=it.topic_id%>/questions/<%=it.question.id%>/options">
+    Option:<br/>
+    <%~ includeFile('./partials/error.eta', { errors: it.validationErrors, attribute: 'option_text'}) %>
+    <div style="display: flex; align-items: center; margin-right: 10px;">
+        <input type="checkbox" name="is_correct"/><br/>
+        <input type="textarea" name="option_text" value="<%= it.option_text ? it.option_text : '' %>"/><br/>
+    </div>
+    <button type="submit">Submit option!</button>
+</form>
