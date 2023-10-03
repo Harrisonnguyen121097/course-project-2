@@ -29,4 +29,9 @@ const showQuestion = async ({ render, params }) => {
     });
 };
 
-export { addQuestion, showQuestion };
+const deleteQuestion = async ({ params, response }) => {
+    await questionService.deleteQuestion(params.qId);
+    response.redirect(`/topics/${params.tId}`);
+}
+
+export { addQuestion, showQuestion, deleteQuestion };

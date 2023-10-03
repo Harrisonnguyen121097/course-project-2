@@ -23,4 +23,9 @@ const addOption = async ({ params, request, response, render }) => {
     }
 }
 
-export { addOption };
+const deleteOption = async ({ params, response }) => {
+    await optionService.deleteOption(params.oId);
+    response.redirect(`/topics/${params.tId}/questions/${params.qId}`);
+}
+
+export { addOption, deleteOption };

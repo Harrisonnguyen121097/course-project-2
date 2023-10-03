@@ -13,6 +13,8 @@ router.post("/topics", topicController.addTopic);
 router.post("/topics/:id/delete", topicController.deleteTopic);
 router.post("/topics/:id/questions", questionController.addQuestion);
 router.get("/topics/:id/questions/:qId", questionController.showQuestion);
+router.post("/topics/:tId/questions/:qId/delete", questionController.deleteQuestion);
 router.post("/topics/:id/questions/:qId/options", optionController.addOption);
+router.post("/topics/:tId/questions/:qId/options/:oId/delete", optionController.deleteOption);
 
 export { router };

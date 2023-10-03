@@ -1,4 +1,5 @@
 import { sql } from "../database/database.js";
+import * as questionAnswerService from "../services/questionAnswerService.js";
 
 const addOption = async (question_id, option_text, is_correct) => {
     if (is_correct) {
@@ -14,5 +15,9 @@ const getOptionsByQuestion = async (question_id) => {
     return rows;
 };
 
+const deleteOption = async (option_id) => {
+    await questionAnswerService.deleteAllQuestionAnswersOfQuestionOption(option_id);
+    await sql`DELETE FROM question_answer_options WHERE id = ${option_id};`;
+};
 
-export { addOption, getOptionsByQuestion };
+export { addOption, getOptionsByQuestion, deleteOption };

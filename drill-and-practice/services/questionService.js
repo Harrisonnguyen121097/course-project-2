@@ -18,4 +18,8 @@ const getQuestionById = async (question_id) => {
     return rows;
 };
 
-export { addQuestion, deleteQuestionsOfTopic, getQuestionsByTopic, getQuestionById };
+const deleteQuestion = async (question_id) => {
+    await sql`DELETE FROM questions WHERE id = ${question_id};`;
+};
+
+export { addQuestion, deleteQuestionsOfTopic, getQuestionsByTopic, getQuestionById, deleteQuestion };
