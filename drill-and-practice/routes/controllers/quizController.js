@@ -26,7 +26,7 @@ const redirectToQuiz = async ({ params, render }) => {
 const answerQuiz = async (context) => {
     const { params, response, user } = context;
     await questionAnswerService.storeQuestionAnswer(user.id, params.qId, params.oId);
-    const isCorrect = (await optionService.checkAnswerIsCorrect(params.oId)).is_correct;
+    const isCorrect = (await optionService.getOptionByOptionId(params.oId)).is_correct;
     if (isCorrect) {
         response.redirect(`/quiz/${params.tId}/questions/${params.qId}/correct`);
     } else {

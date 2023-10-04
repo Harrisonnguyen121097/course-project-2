@@ -2,12 +2,12 @@ import * as topicService from "../../services/topicService.js";
 import * as questionService from "../../services/questionService.js";
 import { validasaur } from "../../deps.js";
 
-const showTopics = async ({ render }) => {
-    render("topics.eta", { topics: await topicService.listTopics() });
+const showTopics = async (context) => {
+    const isAdmin = context.user.admin;
+    context.render("topics.eta", { topics: await topicService.listTopics(), isAdmin: isAdmin });
 };
 
 const addTopic = async ({ request, response, render }) => {
-    // TODO: check admin right
     const body = request.body({ type: "form" });
     const params = await body.value;
     const topicData = { name: params.get("name") };
@@ -27,7 +27,6 @@ const addTopic = async ({ request, response, render }) => {
 };
 
 const deleteTopic = async ({ params, response }) => {
-    // TODO: check admin right
     await topicService.deleteTopic(params.id);
     response.redirect("/topics");
 }

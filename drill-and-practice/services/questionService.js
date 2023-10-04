@@ -27,11 +27,17 @@ const getRandomQuestionByTopicId = async (topic_id) => {
     return rows;
 };
 
+const getRandomQuestion = async () => {
+    const rows = (await sql`SELECT * FROM questions ORDER BY RANDOM() LIMIT 1`)[0];
+    return rows;
+};
+
 export {
-    addQuestion, 
-    deleteQuestionsOfTopic, 
-    getQuestionsByTopic, 
-    getQuestionById, 
-    deleteQuestion, 
+    addQuestion,
+    deleteQuestionsOfTopic,
+    getQuestionsByTopic,
+    getQuestionById,
+    deleteQuestion,
     getRandomQuestionByTopicId,
+    getRandomQuestion,
 };
