@@ -15,11 +15,23 @@ const deleteQuestionsOfTopic = async (topic_id) => {
 
 const getQuestionById = async (question_id) => {
     const rows = await sql`SELECT * FROM questions WHERE id = ${question_id}`;
-    return rows;
+    return rows[0];
 };
 
 const deleteQuestion = async (question_id) => {
     await sql`DELETE FROM questions WHERE id = ${question_id};`;
 };
 
-export { addQuestion, deleteQuestionsOfTopic, getQuestionsByTopic, getQuestionById, deleteQuestion };
+const getRandomQuestionByTopicId = async (topic_id) => {
+    const rows = await sql`SELECT * FROM questions WHERE topic_id = ${topic_id} ORDER BY RANDOM() LIMIT 1`;
+    return rows;
+};
+
+export {
+    addQuestion, 
+    deleteQuestionsOfTopic, 
+    getQuestionsByTopic, 
+    getQuestionById, 
+    deleteQuestion, 
+    getRandomQuestionByTopicId,
+};

@@ -25,7 +25,7 @@ const showQuestion = async ({ render, params }) => {
     render("question.eta", {
         topic_id: params.id,
         options: await optionService.getOptionsByQuestion(params.qId),
-        question: (await questionService.getQuestionById(params.qId))[0]
+        question: (await questionService.getQuestionById(params.qId))
     });
 };
 

@@ -20,4 +20,12 @@ const deleteOption = async (option_id) => {
     await sql`DELETE FROM question_answer_options WHERE id = ${option_id};`;
 };
 
-export { addOption, getOptionsByQuestion, deleteOption };
+const checkAnswerIsCorrect = async (option_id) => {
+    return (await sql`SELECT * FROM question_answer_options WHERE id = ${option_id}`)[0];
+}
+
+const getCorrectQuestionOption = async (question_id) => {
+    return (await sql`SELECT * FROM question_answer_options WHERE question_id = ${question_id} AND is_correct = TRUE`)[0];
+}
+
+export { addOption, getOptionsByQuestion, deleteOption, checkAnswerIsCorrect, getCorrectQuestionOption };

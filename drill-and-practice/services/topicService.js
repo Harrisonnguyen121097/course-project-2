@@ -2,7 +2,7 @@ import { sql } from "../database/database.js";
 import * as questionService from "../services/questionService.js";
 
 const listTopics = async () => {
-    const rows = await sql`SELECT * FROM topics`;
+    const rows = await sql`SELECT * FROM topics ORDER BY name ASC`;
     return rows;
 };
 

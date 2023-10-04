@@ -4,6 +4,7 @@ import * as topicController from "./controllers/topicController.js";
 import * as questionController from "./controllers/questionController.js";
 import * as optionController from "./controllers/optionController.js";
 import * as authController from "./controllers/authController.js";
+import * as quizController from "./controllers/quizController.js";
 
 const router = new Router();
 
@@ -21,5 +22,11 @@ router.get("/auth/register", authController.showRegister);
 router.post("/auth/register", authController.registerUser);
 router.get("/auth/login", authController.showLogin);
 router.post("/auth/login", authController.loginUser);
+router.get("/quiz", quizController.showQuizTopics);
+router.get("/quiz/:tId", quizController.chooseTopic);
+router.get("/quiz/:tId/questions/:qId", quizController.redirectToQuiz);
+router.post("/quiz/:tId/questions/:qId/options/:oId", quizController.answerQuiz);
+router.get("/quiz/:tId/questions/:qId/correct", quizController.renderCorrectPage);
+router.get("/quiz/:tId/questions/:qId/incorrect", quizController.renderInCorrectPage);
 
 export { router };

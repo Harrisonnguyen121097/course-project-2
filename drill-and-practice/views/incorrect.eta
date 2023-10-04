@@ -1,0 +1,5 @@
+<h2>InCorrect!</h2>
+
+<p>The correct option was <%=it.correct_answer%></p>
+
+<a href="/quiz/<%= it.topic_id %>/">Next question</a>

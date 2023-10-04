@@ -13,7 +13,7 @@ const addOption = async ({ params, request, response, render }) => {
     if (!passes) {
         console.log(errors);
         optionData.validationErrors = errors
-        optionData.question = (await questionService.getQuestionById(params.qId))[0]
+        optionData.question = (await questionService.getQuestionById(params.qId))
         optionData.options = await optionService.getOptionsByQuestion(params.qId)
         render("question.eta", optionData);
     }

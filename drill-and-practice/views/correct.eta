@@ -1,0 +1,3 @@
+<h2>Correct!</h2>
+
+<a href="/quiz/<%= it.topic_id %>/">Next question</a>
