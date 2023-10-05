@@ -5,7 +5,7 @@ import * as questionController from "./controllers/questionController.js";
 import * as optionController from "./controllers/optionController.js";
 import * as authController from "./controllers/authController.js";
 import * as quizController from "./controllers/quizController.js";
-import * as apiController from "./controllers/apiController.js";
+import * as questionApi from "./apis/questionApi.js";
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
 
 const router = new Router();
@@ -30,7 +30,7 @@ router.get("/quiz/:tId/questions/:qId", quizController.redirectToQuiz);
 router.post("/quiz/:tId/questions/:qId/options/:oId", quizController.answerQuiz);
 router.get("/quiz/:tId/questions/:qId/correct", quizController.renderCorrectPage);
 router.get("/quiz/:tId/questions/:qId/incorrect", quizController.renderInCorrectPage);
-router.get("/api/questions/random", oakCors(), apiController.showRandomQuestion);
-router.post("/api/questions/answer", oakCors(), apiController.answerRandomQuestion);
+router.get("/api/questions/random", oakCors(), questionApi.showRandomQuestion);
+router.post("/api/questions/answer", oakCors(), questionApi.answerRandomQuestion);
 
 export { router };
