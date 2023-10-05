@@ -32,6 +32,11 @@ const getRandomQuestion = async () => {
     return rows;
 };
 
+const getAllQuestions = async () => {
+    const rows = await sql`SELECT * FROM questions`;
+    return rows;
+};
+
 export {
     addQuestion,
     deleteQuestionsOfTopic,
@@ -40,4 +45,5 @@ export {
     deleteQuestion,
     getRandomQuestionByTopicId,
     getRandomQuestion,
+    getAllQuestions,
 };

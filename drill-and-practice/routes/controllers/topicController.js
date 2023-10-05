@@ -7,17 +7,20 @@ const showTopics = async (context) => {
     context.render("topics.eta", { topics: await topicService.listTopics(), isAdmin: isAdmin });
 };
 
-const addTopic = async ({ request, response, render }) => {
+const addTopic = async (context) => {
+    const { request, response, render } = context;
     const body = request.body({ type: "form" });
     const params = await body.value;
     const topicData = { name: params.get("name") };
     const [passes, errors] = await validasaur.validate(
         topicData,
-        { name: [validasaur.required, validasaur.minLength(1)] },
+        { name: [validasaur.required, validasaur.minLength(2)] },
     );
     if (!passes) {
         console.log(errors);
-        topicData.validationErrors = errors
+        topicData.validationErrors = errors;
+        topicData.topics = await topicService.listTopics();
+        topicData.isAdmin = context.user.admin;
         render("topics.eta", topicData);
     }
     else {

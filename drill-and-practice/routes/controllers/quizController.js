@@ -39,9 +39,10 @@ const renderCorrectPage = async ({ render, params }) => {
 }
 
 const renderInCorrectPage = async ({ render, params }) => {
+    const correctOption = await optionService.getCorrectQuestionOption(params.qId);
     render("incorrect.eta", {
         topic_id: params.tId,
-        correct_answer: (await optionService.getCorrectQuestionOption(params.qId)).option_text
+        correct_answer: correctOption != null ? correctOption.option_text : "None"
     });
 }
 

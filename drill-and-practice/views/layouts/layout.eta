@@ -8,7 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
   </head>
   <body>
-    <%~ includeFile("./partials/navbar.eta") %>
-    <%~ it.body %>
+  <div class="card" style="width: 800px; height: 1000px">
+    <div class="card-body">
+      <%~ it.body %>
+    </div>
+  </div>
   </body>
 </html>

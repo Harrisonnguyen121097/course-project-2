@@ -10,4 +10,8 @@ const storeQuestionAnswer = async (user_id, question_id, question_answer_option_
       VALUES (${user_id}, ${question_id}, ${question_answer_option_id})`;
 }
 
-export { deleteAllQuestionAnswersOfQuestionOption, storeQuestionAnswer };
+const getAllAnswers = async () => {
+    return await sql`SELECT * FROM question_answers`;
+}
+
+export { deleteAllQuestionAnswersOfQuestionOption, storeQuestionAnswer, getAllAnswers };
