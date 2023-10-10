@@ -29,4 +29,10 @@ const getCorrectQuestionOption = async (question_id) => {
     return (await sql`SELECT * FROM question_answer_options WHERE question_id = ${question_id} AND is_correct = TRUE`)[0];
 }
 
-export { addOption, getOptionsByQuestion, deleteOption, getOptionByOptionId, getCorrectQuestionOption };
+export {
+    addOption,
+    getOptionsByQuestion,
+    deleteOption,
+    getOptionByOptionId,
+    getCorrectQuestionOption,
+};
