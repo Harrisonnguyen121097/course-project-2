@@ -8,7 +8,7 @@ const showTopics = async (context) => {
 };
 
 const addTopic = async (context) => {
-    const { request, response, render } = context;
+    const { request, response, render, user } = context;
     const body = request.body({ type: "form" });
     const params = await body.value;
     const topicData = { name: params.get("name") };
@@ -24,7 +24,7 @@ const addTopic = async (context) => {
         render("topics.eta", topicData);
     }
     else {
-        await topicService.addTopic(params.get("name"));
+        await topicService.addTopic(params.get("name"), user.id);
         response.redirect("/topics");
     }
 };

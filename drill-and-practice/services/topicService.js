@@ -6,8 +6,8 @@ const listTopics = async () => {
     return rows;
 };
 
-const addTopic = async (name) => {
-    await sql`INSERT INTO topics (name) VALUES (${name})`;
+const addTopic = async (name, user_id) => {
+    await sql`INSERT INTO topics (user_id, name) VALUES (${user_id}, ${name})`;
 };
 
 const deleteTopic = async (topic_id) => {

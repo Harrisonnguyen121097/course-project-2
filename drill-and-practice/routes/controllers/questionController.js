@@ -2,7 +2,8 @@ import * as questionService from "../../services/questionService.js";
 import * as optionService from "../../services/optionService.js";
 import { validasaur } from "../../deps.js";
 
-const addQuestion = async ({ params, request, response, render }) => {
+const addQuestion = async (context) => {
+    const { params, request, response, render, user } = context;
     const body = request.body({ type: "form" });
     const formData = await body.value;
     const questionData = { question_text: formData.get("question_text") };
@@ -16,7 +17,7 @@ const addQuestion = async ({ params, request, response, render }) => {
         render("topic.eta", questionData);
     }
     else {
-        await questionService.addQuestion(params.id, 1, formData.get("question_text"));
+        await questionService.addQuestion(params.id, user.id, formData.get("question_text"));
         response.redirect(`/topics/${params.id}`);
     }
 }
