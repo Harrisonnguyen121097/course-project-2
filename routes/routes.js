@@ -6,7 +6,7 @@ import * as optionController from "./controllers/optionController.js";
 import * as authController from "./controllers/authController.js";
 import * as quizController from "./controllers/quizController.js";
 import * as questionApi from "./apis/questionApi.js";
-import { oakCors } from "https://deno.land/x/cors/mod.ts";
+import { oakCors } from "https://deno.land/x/cors@v1.2.2/mod.ts";
 
 const router = new Router();
 
