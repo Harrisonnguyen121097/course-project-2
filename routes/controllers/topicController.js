@@ -32,7 +32,7 @@ const addTopic = async (context) => {
 };
 
 const deleteTopic = async (context) => {
-    const { response, user } = context;
+    const { response, user, params } = context;
     if (user.admin) {
         await topicService.deleteTopic(params.id);
     };
