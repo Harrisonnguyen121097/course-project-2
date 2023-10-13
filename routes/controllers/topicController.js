@@ -24,13 +24,18 @@ const addTopic = async (context) => {
         render("topics.eta", topicData);
     }
     else {
-        await topicService.addTopic(params.get("name"), user.id);
+        if (user.admin) {
+            await topicService.addTopic(params.get("name"), user.id);
+        };
         response.redirect("/topics");
     }
 };
 
-const deleteTopic = async ({ params, response }) => {
-    await topicService.deleteTopic(params.id);
+const deleteTopic = async (context) => {
+    const { response, user } = context;
+    if (user.admin) {
+        await topicService.deleteTopic(params.id);
+    };
     response.redirect("/topics");
 }
 
